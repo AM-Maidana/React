@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conceito 2 JSX</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="root2"></div>
+
+    <script type="text/babel">
+        let rootElement = document.getElementById('root');
+        let root2Element = document.getElementById('root2');
+
+        function Welcome(props) {
+            return <h1>Olá mundo</h1>
+        }
+        
+        ReactDOM.render(<Welcome />, rootElement);
+        //  --------------------------------
+
+        function Welcome2(props) {
+            return <h1>Olá {props.name}</h1>
+        }
+
+        ReactDOM.render(<Welcome2 name="Amanda" />, rootElement);
+        //  --------------------------------
+        function Welcome3(props){
+            return <h1>{props.name} tem {parseInt(props.age)} anos</h1>
+        }
+
+        ReactDOM.render(<Welcome3 name="Amanda" age="20" />, rootElement);
+        //  --------------------------------
+        function Frutas(props){
+            return <h1>{props.name} é {props.sabor}</h1>
+        }
+
+        const App = () => {
+            return (
+                <div>
+                    <Frutas name="Maçã" sabor="doce" />
+                    <Frutas name="Limão" sabor="azedo" />
+                    <Frutas name="Uva" sabor="doce" />
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, root2Element);
+    </script>
+
+</html>

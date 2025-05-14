@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conceito 2 JSX</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<style>
+    .div1 {
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+</style>
+<body>
+    <div class="div1" id="root"></div>
+    <div id="root2"></div>
+
+    <script type="text/babel">
+        // 1. Variaveis e renderização básica
+        const titulo = "Contador de números";
+        const subtitulo = "Testando o React";
+
+        const elementJSX = (
+            <div>
+                <h1>{titulo}</h1>
+                <h2>{subtitulo}</h2>
+            </div>
+        );
+
+        function App() {
+            return (
+                <div>
+                    {elementJSX}
+                </div>
+            );
+        }
+// --------------------------------------------------
+        function Contador() {
+            const [contador, setContador] = React.useState(0);
+
+            return (
+                <div>
+                    <h1 style={{
+                        fontFamily: "Arial"
+                    }}>{titulo}</h1>
+                    <h1>
+                        {contador}
+                    </h1>
+                    <button style={{
+                        backgroundColor: "#00ff00",
+                        padding: "10px",
+                        border: "none",
+                        borderRadius: "10px",
+                    }} onClick={() => setContador(contador + 1)}> + Adicionar</button>
+                    <button style={{
+                        backgroundColor: "#ff0000",
+                        color: "#fff",
+                        padding: "10px",
+                        marginLeft: "10px",
+                        border: "none",
+                        borderRadius: "10px",
+                    }} onClick={() => setContador(contador - 1)}> - Remover</button>
+
+                </div>
+            );
+        }
+
+        ReactDOM.render(<Contador />, document.getElementById("root"));
+
+        
+    </script>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #f2f2f2;
+        padding: 20px;
+        color: #333;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    h3 {
+        color: #089bc0;
+    }
+
+    .container,
+    #contador-container,
+    #todo-container {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin: 5px 2px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+        width: calc(100% - 24px);
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .tarefa {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 4px;
+        background-color: #fafafa;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .tarefa span {
+        flex: 1;
+    }
+
+    .concluida {
+        text-decoration: line-through;
+        color: gray;
+    }
+
+    #contador-valor {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h3>Exemplo 1</h3>
+        <div id="saudacao-container"></div>
+        <br>
+    </div>
+
+    <!-- ? Exemplo 2-->
+
+    <div id="contador-container">
+        <h3>Exemplo 2</h3>
+        <h2>Contador</h2>
+        <p id="contador-valor">0</p>
+        <button id="contador-incrementar">+ 1</button>
+        <button id="contador-decrementar">- 1</button>
+        <br>
+    </div>
+
+    <!-- ? Exemplo 3-->
+
+    <div id="todo-container">
+        <h3>Exemplo 3</h3>
+        <h2>Lista de tarefas</h2>
+        <input type="text" id="nova-tarefa" placeholder="Adicionar nova tarefa">
+        <button id="adicionar-tarefa">Adicionar</button>
+        <div id="lista-tarefas"></div>
+    </div>
+
+    <!-- ! scripts -->
+    <script>
+        function renderizarSaudacao(nome, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `<h1>Olá ${nome}</h1>`;
+        }
+
+        renderizarSaudacao('Amanda', 'saudacao-container');
+
+        // ? Script do elemento 2
+
+        let contador = 0;
+        const contadorValor = document.getElementById('contador-valor');
+        const atualizarContador = () => contadorValor.textContent = contador;
+        document.getElementById('contador-incrementar').addEventListener('click', () => {
+            contador++;
+            atualizarContador();
+        })
+        document.getElementById('contador-decrementar').addEventListener('click', () => {
+            contador--;
+            atualizarContador();
+        });
+        // script elemento 3>
+        let tarefas = [];
+        const lista = document.getElementById('lista-tarefas');
+
+        function renderizarTarefas() {
+            lista.innerHTML = tarefas.map((tarefa, index) => {
+                return `
+                <div class="tarefa ${tarefa.concluida ? 'concluida' : ''}">
+                    <span>${tarefa.texto}</span>
+                    <button onclick="marcarTarefa(${index})">${tarefa.concluida ? 'desmarcar' : 'concluir'}</button>
+                    <button onclick="removerTarefa(${index})">Remover</button>
+                </div>
+            `;
+            }).join('');  // Join é usado para unir os elementos do array em uma string
+        }
+        window.marcarTarefa = (index) => {
+            tarefas[index].concluida = !tarefas[index].concluida; //aqui esta alternando o estado da tarefa
+            renderizarTarefas();
+        };
+        window.removerTarefa = (index) => {
+            tarefas = tarefas.filter((_, i) => i !== index); // aqui vou buscar as tarefas que eu vou remover somente pelo indice (que é o i na qual é variavel local que foi criada para representar o indice do tarefa.map)
+            renderizarTarefas();
+        };
+
+        document.getElementById('adicionar-tarefa').addEventListener('click', () => {
+            const input = document.getElementById('nova-tarefa');
+            const texto = input.value.trim(); //trim para remover os espaços vazios
+            if (texto) {
+                tarefas.push({ texto, concluida: false });
+                input.value = '';
+                renderizarTarefas();
+            }
+        });
+
+    </script>
+</body>
+
+</html>
