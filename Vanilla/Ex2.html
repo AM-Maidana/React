@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 2 - React Vanilla</title>
+</head>
+<style>
+    body {
+        height: 100vh;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>Aula 2</h1>
+        <section>
+            <h2>Event Listener</h2>
+            <div id="WindowSize">
+                Tamanho da tela
+            </div>
+            <button id="btn">Clique aqui</button>
+        </section>
+    </div>
+
+    <script>
+        function updateWindowSize() {
+            const sizeElement = document.getElementById('WindowSize');
+            sizeElement.innerHTML = `Largura: ${window.innerWidth} px, Altura: ${window.innerHeight} px`;
+        }
+        document.getElementById('btn').addEventListener('click', updateWindowSize);
+        </script>
+</body>
+</html>

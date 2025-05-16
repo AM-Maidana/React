@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex 2</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function WindowSize() {
+            const [size, setSize] = React.useState({
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+
+            React.useEffect(() => {
+                const handleResize = () => {
+                    setSize({
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    });
+                };
+                window.addEventListener('resize', handleResize);
+                return () => window.removeEventListener('resize', handleResize);
+            }, []);
+
+            return <div>Tamanho: {size.width} x {size.height}</div>;
+        }
+
+        ReactDOM.render(<WindowSize />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>
