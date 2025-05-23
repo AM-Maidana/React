@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .Calculadora {
+            border-radius: 25px;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+            margin-top: 50px;
+            width: 300px;
+            /* define a largura */
+            padding: 20px
+        }
+
+        .botoes {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            border-radius: 25px;
+            padding: 10px;
+        }
+
+        .btnCalcular {
+            border-radius: 25px;
+            padding: 10px;
+            background-color: #b3ff00;
+            color: black;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- ! Scripts-->
+    <script type="text/babel">
+        function Calculadora() {
+            const [resultado, setResultado] = React.useState(0);
+            const [operacao, setOperacao] = React.useState(null);
+            const [valor1, setValor1] = React.useState(null);
+            const [valor2, setValor2] = React.useState(null);
+
+            function calcular() {
+                let res;
+                switch (operacao) {
+                    case '+':
+                        res = valor1 + valor2;
+                        break;
+                    case '-':
+                        res = valor1 - valor2;
+                        break;
+                    case '*':
+                        res = valor1 * valor2;
+                        break;
+                    case '/':
+                        res = valor1 / valor2;
+                        break;
+                    default:
+                        res = 0;
+                }
+                setResultado(res);
+            }
+
+            return (
+                <div>
+                    <h1>Calculadora - usando React</h1>
+                    <div className="Calculadora">
+                        <input type="number" placeholder=""onChange={(e) => setValor1(Number(e.target.value))} />
+                        <input type="number" onChange={(e) => setValor2(Number(e.target.value))} />
+                        <div className="botoes">
+                            <h2>Selecione a Operação:</h2>
+                            <button className="btn" onClick={() => setOperacao('+')}>+</button>
+                            <button className="btn" onClick={() => setOperacao('-')}>-</button>
+                            <button className="btn" onClick={() => setOperacao('*')}>*</button>
+                            <button className="btn" onClick={() => setOperacao('/')}>/</button>
+                        </div>
+                        <button className="btnCalcular" onClick={calcular}>Calcular</button>
+                        <h2>Resultado: {resultado}</h2>
+                    </div>
+                </div>
+            );
+
+        }
+        ReactDOM.render(<Calculadora />, document.getElementById('root'));
+
+    </script>
+</body>
+
+</html>
