@@ -55,3 +55,33 @@
   justify-content: center;
   margin: auto;
 }
+/* ? Exercicios 26 - 05 -2025 */
+/* * Exercicio 1 - botao legal com componentes*/
+.Paibtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.btnLegal{
+  background-color: #6197fb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+.btnLegal:hover {
+  background-color: #4a7bbf;
+}
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+
+}
+
+/* * exercicio 2 -  */
