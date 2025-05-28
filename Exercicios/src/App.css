@@ -84,4 +84,14 @@
 
 }
 
-/* * exercicio 2 -  */
+/* * exercicio 2 -  *
+
+/* ? EXERCICIOS 28 - 05 - 2025*/
+.container-Pai{
+  display: flex;
+  border-radius: 25px;
+  border: 1px solid;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;  
+}

@@ -5,6 +5,8 @@ import "./App.css";
 
 import "./css/Desafio2605.css";
 import PerfilUsuario from "./components/Desafio2605";
+import BlocoDeNotas from "./components/Desafio2805";
+import {NotasProvider} from './components/Desafio2805'
 
 // const produtos = [
 //   {
@@ -50,15 +52,21 @@ import PerfilUsuario from "./components/Desafio2605";
 // }
 //* Desafio - 26 de maio/
 function App() {
-  return (
-    <div className="App">
-      <h1>Desafio - 26 de maio</h1>
-      <PerfilUsuario
-        imagem="https://pbs.twimg.com/media/E17dV5_VkAAesFs.jpg"
-        nome="Amanda Maidana"
-        bio="Entusiasta de tecnologia apaixonada por gatos e programação. Sempre em busca de aprender algo novo e compartilhar conhecimento!"
-      />
-    </div>
+  // return (
+  //   <div className="App">
+  //     <h1>Desafio - 26 de maio</h1>
+  //     <PerfilUsuario
+  //       imagem="https://pbs.twimg.com/media/E17dV5_VkAAesFs.jpg"
+  //       nome="Amanda Maidana"
+  //       bio="Entusiasta de tecnologia apaixonada por gatos e programação. Sempre em busca de aprender algo novo e compartilhar conhecimento!"
+  //     />
+  //   </div>
+  // );
+//* Desafrio - 28 de maio/
+    return (
+    <NotasProvider>
+      <BlocoDeNotas />
+    </NotasProvider>
   );
 }
 export default App;

@@ -1,5 +1,5 @@
 
-import BoasVindas from './components/BoasVindas';
+import BoasVindas from './components/26-05/BoasVindas';
 
 
 function Ex1() {
